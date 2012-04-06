@@ -79,3 +79,14 @@ section {
     }
   }
 }
+
+footer {
+  p {
+    margin: 0;
+    color: #4c566c;
+    @include text-shadow('0 1px 0 #fff');
+    font-size: 16px;
+    text-align: center;
+    line-height: 1.4;
+  }
+}

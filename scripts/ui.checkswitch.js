@@ -1,13 +1,13 @@
 /*!
  * ui.checkSwitch
  *
- * @version      0.11
+ * @version      0.12
  * @author       nori (norimania@gmail.com)
  * @copyright    5509 (http://5509.me/)
  * @license      The MIT License
  * @link         https://github.com/5509/ui.checkSwitch
  *
- * 2012-04:07 02:54
+ * 2012-04:07 03:10
  */
 (function(window, document) {
   
@@ -16,7 +16,7 @@
   hasTouchEvents = ('ontouchstart' in window),
   hasAddEvent = 'addEventListener' in window,
 
-  // hasTouchEvents events
+  // TouchEvents
   TOUCHSTARTEV = hasTouchEvents ? 'touchstart' : 'mousedown',
   TOUCHMOVEEV = hasTouchEvents ? 'touchmove' : 'mousemove',
   TOUCHENDEV = hasTouchEvents ? 'touchend' : 'mouseup';
@@ -182,16 +182,6 @@
         }
 
         distX = pageX - self.basePageX;
-        newX = self.currentX + distX;
-        if ( newX >= 0 ) {
-          newX = Math.round(self.currentX + distX / 3);
-        }
-
-        if ( newX < 0 ) {
-          newX = 0;
-        }
-
-        self.currentX = newX;
         self.directionX = distX;
 
         self._moving();
@@ -225,6 +215,7 @@
         return;
       }
 
+      // tapout (touchend
       if ( !self.moveReady ) {
         if ( self.getState() ) {
           self._off();
@@ -250,9 +241,6 @@
       }
 
       self.scrolling = false;
-    },
-
-    _eventify: function() {
     },
 
     _view: function() {
@@ -388,6 +376,14 @@
 
     destroy: function() {
       var self = this;
+
+      if ( hasAddEvent ) {
+        document.removeEventListener(TOUCHMOVEEV, self, false);
+        document.removeEventListener(TOUCHENDEV, self, false);
+      } else {
+        self.handledMove.detach();
+        self.handledEnd.detach();
+      }
 
       self.view.parentNode.removeChild(self.view);
       styles(self.elem, {
