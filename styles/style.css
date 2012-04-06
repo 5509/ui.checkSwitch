@@ -96,3 +96,16 @@ section fieldset > div input {
 section fieldset > div .ui_check_switch {
   float: right;
 }
+
+footer p {
+  margin: 0;
+  color: #4c566c;
+  -webkit-text-shadow: 0 1px 0 #fff;
+  -moz-text-shadow: 0 1px 0 #fff;
+  -o-text-shadow: 0 1px 0 #fff;
+  -ms-text-shadow: 0 1px 0 #fff;
+  text-shadow: 0 1px 0 #fff;
+  font-size: 16px;
+  text-align: center;
+  line-height: 1.4;
+}
