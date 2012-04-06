@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>CheckSwitch</title>
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="styles/style.css">
+	<link rel="stylesheet" href="styles/ui.checkswitch.css">
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-4011945-9']);
+	  _gaq.push(['_trackPageview']);
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+</head>
+<body>
+
+	<header>
+		<h1>CheckSwitch</h1>
+	</header>
+	<div class="contents">
+		<section>
+			<h2>Demo</h2>
+			<fieldset>
+				<div>
+					<label>Basic</label>
+					<input type="checkbox" id="basic" name="basic" value="1">
+				</div>
+				<div>
+					<label>Events</label>
+					<input type="checkbox" id="events" name="events" value="1" checked>
+				</div>
+				<div>
+					<label>Custom Label</label>
+					<input type="checkbox" id="label" name="label" value="1" checked>
+				</div>
+			</fieldset>
+		</section>
+	</div>
+
+<script src="scripts/ui.checkswitch.js"></script>
+<script>
+(function() {
+	var chk = CheckSwitch('#basic');
+}());
+
+(function() {
+	var chk = CheckSwitch('#events');
+	chk.bind({
+		'checkSwitch:on': function() {
+			console.log(chk.getState());
+		},
+		'checkSwitch:off': function() {
+			console.log(chk.getState());
+		}
+	});
+}());
+
+(function() {
+	var chk = CheckSwitch('#label', {
+		checkOnText: 'オン',
+		checkOffText: 'オフ'
+	});
+}());
+</script>
+
+</body>
+</html>

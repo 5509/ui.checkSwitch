@@ -1,0 +1,109 @@
+@import '_mixins';
+
+.ui_check_switch {
+  border: solid #878787 1px;
+  @include border-radius('13px');
+  display: inline-block;
+  width: 76px;
+  height: 26px;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  cursor: pointer;
+
+  .ui_check_switch_inner {
+    @include border-radius('12px');
+    display: block;
+    width: 76px;
+    height: 26px;
+    overflow: hidden;
+  }
+
+  &:after {
+    content: ' ';
+    border: solid transparent 1px;
+    @include border-radius('12px');
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    overflow: hidden;
+    background-color: transparent;
+    @include box-shadow('0 1px 5px rgba(0,0,0,0.4) inset');
+  }
+
+  .ui_check_switch_slider {
+    display: block;
+    width: 126px;
+    height: 26px;
+    line-height: 27px;
+    @include linear-gradient('to right', '007fea', 0, '007fea', 50, 'eee', 50, 'eee', 100);
+    overflow: hidden;
+    z-index: 1;
+
+    &:after {
+      content: ' ';
+      margin-left: -45%;
+      @include border-radius('8px');
+      width: 90%;
+      height: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      @include linear-gradient('to bottom', 'fff', 0, 'bbb', 100);
+      @include opacity(0.2);
+      z-index: 2;
+    }
+
+    > span {
+      float: left;
+      position: relative;
+    }
+
+    .ui_check_knob {
+      @include border-radius('13px');
+      width: 26px;
+      height: 26px;
+      @include linear-gradient('to bottom', 'd1d1d1', 0, 'fefefe', 69);
+      @include box-shadow('0 0 4px #000');
+      z-index: 150;
+    }
+
+    .ui_check_text {
+      width: 50px;
+      height: 26px;
+      color: #fff;
+      font-weight: bold;
+      text-align: center;
+      @include text-shadow('-1px -1px 0 rgba(9,110,166,0.4)');
+      font-size: 16px;
+    }
+    .ui_check_off {
+      color: #7f7f7f;
+      @include text-shadow('-1px -1px 0 rgba(178,178,178,0.4)');
+    }
+  }
+}
+.ui_check_switch_on,
+.ui_check_switch_off {
+  .ui_check_switch_slider {
+    @include transition('ease 0.2s margin');
+  }
+}
+.ui_check_switch_on {
+  .ui_check_switch_slider {
+    .ui_check_knob {
+      @include box-shadow('-2px 0 4px rgba(0,0,0,0.5)');
+    }
+  }
+}
+.ui_check_switch_off {
+  .ui_check_switch_slider {
+    .ui_check_knob {
+      @include box-shadow('2px 0 4px rgba(0,0,0,0.5)');
+    }
+  }
+}
+
