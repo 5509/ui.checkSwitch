@@ -34,14 +34,10 @@
 
       var self = this;
 
-      if ( 'jQuery' in window ) {
-        self.elem = elem[0];
+      if ( typeof elem === 'string' ) {
+        self.elem = document.getElementById(elem.replace('#', ''));
       } else {
-        if ( typeof elem === 'string' ) {
-          self.elem = document.getElementById(elem.replace('#', ''));
-        } else {
-          self.elem = elem;
-        }
+        self.elem = elem;
       }
 
       if ( self.elem.nodeName !== 'INPUT'
@@ -84,16 +80,19 @@
       self.disabled = false;
       self.destroyed = false;
 
+      // build
       self._view();
       self._setHandle();
     },
 
     _setHandle: function() {
       var self = this;
+      // except IE
       if ( hasAddEvent ) {
         self.view.addEventListener(TOUCHSTARTEV, self, false);
         document.addEventListener(TOUCHMOVEEV, self, false);
         document.addEventListener(TOUCHENDEV, self, false);
+      // old IE (less than IE8
       } else {
         self.handledStart = handleEvent(
           self.view,
@@ -115,7 +114,8 @@
 
     handleEvent: function(ev) {
       var self = this;
-
+      
+      // events handling
       switch ( ev.type ) {
       case TOUCHSTARTEV:
         self._touchStart(ev);
@@ -243,6 +243,7 @@
       self.scrolling = false;
     },
 
+    // build view
     _view: function() {
       var self = this,
         conf = self.conf;
@@ -291,6 +292,7 @@
       return self.view;
     },
 
+    // move switch slider
     _slide: function(x) {
       var self = this,
         current = self.sliderCurrent,
@@ -307,11 +309,13 @@
       self._setSliderPos(next);
     },
 
+    // just moving
     _moving: function() {
       var self = this;
       self.view.className = self.conf.uiClass;
     },
 
+    // move to
     _setSliderPos: function(x) {
       var self = this;
       self.sliderCurrent = x;
@@ -320,6 +324,7 @@
       });
     },
 
+    // check on
     _on: function() {
       var self = this,
         conf = self.conf,
@@ -333,6 +338,7 @@
       trigger(self.view, 'checkSwitch:on');
     },
 
+    // check off
     _off: function() {
       var self = this,
         conf = self.conf,
@@ -346,11 +352,13 @@
       trigger(self.view, 'checkSwitch:off');
     },
 
+    // get checkbox state
     getState: function() {
       var self = this;
       return self.elem.checked ? true : false;
     },
 
+    // set checkbox state
     setState: function(state) {
       var self = this;
       self.elem.checked = state ? 'checked' : '';
@@ -366,6 +374,7 @@
       self._off();
     },
 
+    // event binding API
     bind: function(obj) {
       var self = this,
         c = undefined;
@@ -374,6 +383,7 @@
       }
     },
 
+    // destroy this
     destroy: function() {
       var self = this;
 
