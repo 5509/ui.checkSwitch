@@ -9,52 +9,143 @@ body {
   @include background-size('14px 5px');
 }
 
-h1, h2 {
+h1, h2, h3 {
   margin: 0;
   padding: 0;
 }
 
-h2 {
+h2, h3 {
   color: #4c566c;
   @include text-shadow('0 1px 0 #fff');
+}
+
+.icon {
+  background-position: 10px center;
+  background-repeat: no-repeat;
+  @include background-size('20px 20px');
+  text-indent: 28px;
+}
+
+.icon_capable {
+  @extend .icon;
+  background-image: url(../images/icon_checkmark.png);
+}
+.icon_license {
+  @extend .icon;
+  background-image: url(../images/icon_document.png);
+}
+.icon_author {
+  @extend .icon;
+  background-image: url(../images/icon_man.png);
+}
+.icon_download {
+  @extend .icon;
+  background-image: url(../images/icon_inbox.png);
+}
+.icon_repository {
+  @extend .icon;
+  background-image: url(../images/icon_link.png);
+}
+.icon_like {
+  @extend .icon;
+  background-image: url(../images/icon_favorites_add.png);
 }
 
 header {
   border-top: solid #e6e6e6 1px;
   border-bottom: solid #2d3033 1px;
+  width: 100%;
   height: 43px;
   @include linear-gradient('to bottom', 'b5c0ce', 0, '889bb3', 50, '7e94b0', 51, '6d83a1', 100);
   @include box-shadow('0 1px 0 #ccd2da inset');
   font-size: 10px;
   line-height: 43px;
   text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
 
   h1 {
     color: rgba(255,255,255,0.9);
-    background-color: rgba(255,255,255,1);
-    -webkit-background-clip: text;
     @include text-shadow('1px 1px 0 rgba(0,0,0,0.5)');
   }
 }
 
+.box {
+  margin: 0;
+  border: solid #a6acb1 1px;
+  @include border-radius('10px');
+  padding: 0;
+  background-color: #fff;
+  @include box-shadow('0 -1px 2px #d7d7d7 inse, 0 1px 1px #fff');
+}
+
+.box-section {
+  border-bottom: solid #cacaca 1px;
+  padding: 10px;
+
+  &:last-child {
+    border: none;
+  }
+}
+
+.paragraph {
+  margin: 0;
+  color: #4c566c;
+  @include text-shadow('0 1px 0 #fff');
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.contents {
+  padding-top: 43px;
+}
+
 section {
-  padding: 20px 9px;
+  padding: 20px 9px 0;
+
+  &:last-child {
+    margin-bottom: 20px;
+  }
 
   h2 {
     padding: 0 10px 10px;
   }
 
+  h3 {
+    padding: 0 10px 10px;
+    font-size: 16px;
+
+    + h2,
+    + p {
+      padding-top: 0;
+    }
+  }
+
+  p {
+    @extend .paragraph;
+    padding: 10px 10px 0;
+
+    + pre,
+    + table {
+      margin-top: 10px;
+    }
+  }
+
+  pre {
+    @extend .box;
+    padding: 10px;
+
+    + h3 {
+      margin-top: 15px;
+    }
+  }
+
   fieldset {
-    margin: 0;
-    border: solid #a6acb1 1px;
-    @include border-radius('10px');
-    padding: 0;
-    background-color: #fff;
-    @include box-shadow('0 -1px 2px #d7d7d7 inse, 0 1px 1px #fff');
+    @extend .box;
 
     > div {
-      border-bottom: solid #cacaca 1px;
-      padding: 10px;
+      @extend .box-section;
       overflow: hidden;
 
       &:last-child {
@@ -77,6 +168,86 @@ section {
         float: right;
       }
     }
+  }
+
+  ul {
+    @extend .box;
+    list-style: none;
+
+    li {
+      @extend .box-section;
+      font-weight: bold;
+    }
+  }
+
+  .note {
+    padding-top: 5px;
+    p {
+      padding: 5px 10px 0;
+      font-size: 12px;
+    }
+  }
+
+  table {
+    @extend .box;
+    border-collapse: separate;
+    width: 100%;
+
+    tr {
+      @extend .box-section;
+      border: none;
+
+      th,
+      td {
+        padding: 10px;
+        border-bottom: solid #cacaca 1px;
+      }
+      th {
+        width: 90px;
+        text-align: left;
+      }
+
+      &:last-child {
+        th,
+        td {
+          border: none;
+        }
+      }
+      &:first-child {
+        th,
+        td {
+          border-bottom: solid #cacaca 1px;
+        }
+      }
+    }
+
+    thead {
+      th,
+      td {
+        font-weight: bold;
+
+        &:before {
+          content: '-';
+          margin-right: 5px;
+        }
+      }
+      th {
+        @include border-radius('5px 0 0 0');
+      }
+    }
+
+    + h3 {
+      margin-top: 15px;
+    }
+  }
+}
+
+footer {
+  padding: 10px 0;
+  p {
+    @extend .paragraph;
+    text-align: center;
+    font-size: 12px;
   }
 }
 

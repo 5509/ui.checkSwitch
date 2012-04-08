@@ -8,12 +8,12 @@ body {
   background-size: 14px 5px;
 }
 
-h1, h2 {
+h1, h2, h3 {
   margin: 0;
   padding: 0;
 }
 
-h2 {
+h2, h3 {
   color: #4c566c;
   -webkit-text-shadow: 0 1px 0 #fff;
   -moz-text-shadow: 0 1px 0 #fff;
@@ -22,10 +22,45 @@ h2 {
   text-shadow: 0 1px 0 #fff;
 }
 
+.icon, .icon_capable, .icon_license, .icon_author, .icon_download, .icon_repository, .icon_like {
+  background-position: 10px center;
+  background-repeat: no-repeat;
+  -webkit-background-size: 20px 20px;
+  -moz-background-size: 20px 20px;
+  background-size: 20px 20px;
+  text-indent: 28px;
+}
+
+.icon_capable {
+  background-image: url(../images/icon_checkmark.png);
+}
+
+.icon_license {
+  background-image: url(../images/icon_document.png);
+}
+
+.icon_author {
+  background-image: url(../images/icon_man.png);
+}
+
+.icon_download {
+  background-image: url(../images/icon_inbox.png);
+}
+
+.icon_repository {
+  background-image: url(../images/icon_link.png);
+}
+
+.icon_like {
+  background-image: url(../images/icon_favorites_add.png);
+}
+
 header {
   border-top: solid #e6e6e6 1px;
   border-bottom: solid #2d3033 1px;
+  width: 100%;
   height: 43px;
+  background: #b5c0ce;
   background-image: url(data:image/svg+xml,%3c%3fxml%20version%3d%221%2e0%22%3f%3e%3csvg%20xmlns%3d%22http%3a%2f%2fwww%2ew3%2eorg%2f2000%2fsvg%22%20width%3d%22100%25%22%20height%3d%22100%25%22%3e%3cdefs%3e%3clinearGradient%20id%3d%22G%22%20x2%3d%220%25%22%20y2%3d%22100%25%22%3e%3cstop%20style%3d%22stop%2dcolor%3a%23b5c0ce%22%20offset%3d%220%25%22%2f%3e%3cstop%20style%3d%22stop%2dcolor%3a%23889bb3%22%20offset%3d%2250%25%22%2f%3e%3cstop%20style%3d%22stop%2dcolor%3a%237e94b0%22%20offset%3d%2251%25%22%2f%3e%3cstop%20style%3d%22stop%2dcolor%3a%236d83a1%22%20offset%3d%22100%25%22%2f%3e%3c%2flinearGradient%3e%3c%2fdefs%3e%3crect%20width%3d%22100%25%22%20height%3d%22100%25%22%20fill%3d%22url%28%23G%29%22%2f%3e%3c%2fsvg%3e);
   background-image: -ms-linear-gradient(top, #b5c0ce 0%,#889bb3 50%,#7e94b0 51%,#6d83a1 100%);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b5c0ce),color-stop(50%, #889bb3),color-stop(51%, #7e94b0),color-stop(100%, #6d83a1));
@@ -41,11 +76,12 @@ header {
   font-size: 10px;
   line-height: 43px;
   text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 header h1 {
   color: rgba(255, 255, 255, 0.9);
-  background-color: white;
-  -webkit-background-clip: text;
   -webkit-text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
   -moz-text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
   -o-text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
@@ -53,13 +89,7 @@ header h1 {
   text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
 }
 
-section {
-  padding: 20px 9px;
-}
-section h2 {
-  padding: 0 10px 10px;
-}
-section fieldset {
+.box, section pre, section fieldset, section ul, section table {
   margin: 0;
   border: solid #a6acb1 1px;
   -webkit-border-radius: 10px;
@@ -75,9 +105,62 @@ section fieldset {
   -ms-box-shadow: 0 -1px 2px #d7d7d7 inse, 0 1px 1px #fff;
   box-shadow: 0 -1px 2px #d7d7d7 inse, 0 1px 1px #fff;
 }
-section fieldset > div {
+
+.box-section, section fieldset > div, section ul li, section table tr {
   border-bottom: solid #cacaca 1px;
   padding: 10px;
+}
+.box-section:last-child, section fieldset > div:last-child, section ul li:last-child, section table tr:last-child {
+  border: none;
+}
+
+.paragraph, section p, footer p {
+  margin: 0;
+  color: #4c566c;
+  -webkit-text-shadow: 0 1px 0 #fff;
+  -moz-text-shadow: 0 1px 0 #fff;
+  -o-text-shadow: 0 1px 0 #fff;
+  -ms-text-shadow: 0 1px 0 #fff;
+  text-shadow: 0 1px 0 #fff;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.contents {
+  padding-top: 43px;
+}
+
+section {
+  padding: 20px 9px 0;
+}
+section:last-child {
+  margin-bottom: 20px;
+}
+section h2 {
+  padding: 0 10px 10px;
+}
+section h3 {
+  padding: 0 10px 10px;
+  font-size: 16px;
+}
+section h3 + h2,
+section h3 + p {
+  padding-top: 0;
+}
+section p {
+  padding: 10px 10px 0;
+}
+section p + pre,
+section p + table {
+  margin-top: 10px;
+}
+section pre {
+  padding: 10px;
+}
+section pre + h3 {
+  margin-top: 15px;
+}
+section fieldset > div {
   overflow: hidden;
 }
 section fieldset > div:last-child {
@@ -95,6 +178,70 @@ section fieldset > div input {
 }
 section fieldset > div .ui_check_switch {
   float: right;
+}
+section ul {
+  list-style: none;
+}
+section ul li {
+  font-weight: bold;
+}
+section .note {
+  padding-top: 5px;
+}
+section .note p {
+  padding: 5px 10px 0;
+  font-size: 12px;
+}
+section table {
+  border-collapse: separate;
+  width: 100%;
+}
+section table tr {
+  border: none;
+}
+section table tr th,
+section table tr td {
+  padding: 10px;
+  border-bottom: solid #cacaca 1px;
+}
+section table tr th {
+  width: 90px;
+  text-align: left;
+}
+section table tr:last-child th,
+section table tr:last-child td {
+  border: none;
+}
+section table tr:first-child th,
+section table tr:first-child td {
+  border-bottom: solid #cacaca 1px;
+}
+section table thead th,
+section table thead td {
+  font-weight: bold;
+}
+section table thead th:before,
+section table thead td:before {
+  content: '-';
+  margin-right: 5px;
+}
+section table thead th {
+  -webkit-border-radius: 5px 0 0 0;
+  -moz-border-radius: 5px 0 0 0;
+  -o-border-radius: 5px 0 0 0;
+  -ms-border-radius: 5px 0 0 0;
+  border-radius: 5px 0 0 0;
+}
+section table + h3 {
+  margin-top: 15px;
+}
+
+footer {
+  padding: 10px 0;
+}
+footer p {
+  text-align: center;
+  font-size: 12px;
 }
 
 footer p {
