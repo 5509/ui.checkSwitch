@@ -66,8 +66,8 @@
       @include border-radius('13px');
       width: 26px;
       height: 26px;
-      @include linear-gradient('to bottom', 'd1d1d1', 0, 'fefefe', 69);
-      @include box-shadow('0 0 4px #000');
+      @include linear-gradient('to bottom', 'c8c8c8', 0, 'e4e4e4', 100);
+      @include box-shadow('0 0 4px #000, 0 0 3px #fff inset');
       z-index: 150;
     }
 
@@ -90,19 +90,23 @@
 .ui_check_switch_off {
   .ui_check_switch_slider {
     @include transition('ease 0.2s margin');
+
+    .ui_check_knob {
+      @include linear-gradient('to bottom', 'd1d1d1', 0, 'fefefe', 69);
+    }
   }
 }
 .ui_check_switch_on {
   .ui_check_switch_slider {
     .ui_check_knob {
-      @include box-shadow('-2px 0 4px rgba(0,0,0,0.5)');
+      @include box-shadow('-1px 0 2px rgba(0,0,0,0.7), 0 0 3px #fff inset');
     }
   }
 }
 .ui_check_switch_off {
   .ui_check_switch_slider {
     .ui_check_knob {
-      @include box-shadow('2px 0 4px rgba(0,0,0,0.5)');
+      @include box-shadow('1px 0 2px rgba(0,0,0,0.7), 0 0 3px #fff inset');
     }
   }
 }

@@ -19,6 +19,11 @@ h2, h3 {
   @include text-shadow('0 1px 0 #fff');
 }
 
+a {
+  color: #385487;
+  text-decoration: none;
+}
+
 .icon {
   background-position: 10px center;
   background-repeat: no-repeat;

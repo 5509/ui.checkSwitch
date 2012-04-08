@@ -99,19 +99,19 @@
   border-radius: 13px;
   width: 26px;
   height: 26px;
-  background: #d1d1d1;
-  background-image: url(data:image/svg+xml,%3c%3fxml%20version%3d%221%2e0%22%3f%3e%3csvg%20xmlns%3d%22http%3a%2f%2fwww%2ew3%2eorg%2f2000%2fsvg%22%20width%3d%22100%25%22%20height%3d%22100%25%22%3e%3cdefs%3e%3clinearGradient%20id%3d%22G%22%20x2%3d%220%25%22%20y2%3d%22100%25%22%3e%3cstop%20style%3d%22stop%2dcolor%3a%23d1d1d1%22%20offset%3d%220%25%22%2f%3e%3cstop%20style%3d%22stop%2dcolor%3a%23fefefe%22%20offset%3d%2269%25%22%2f%3e%3c%2flinearGradient%3e%3c%2fdefs%3e%3crect%20width%3d%22100%25%22%20height%3d%22100%25%22%20fill%3d%22url%28%23G%29%22%2f%3e%3c%2fsvg%3e);
-  background-image: -ms-linear-gradient(top, #d1d1d1 0%,#fefefe 69%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d1d1d1),color-stop(69%, #fefefe));
-  background-image: -webkit-linear-gradient(top, #d1d1d1 0%,#fefefe 69%);
-  background-image: -moz-linear-gradient(top, #d1d1d1 0%,#fefefe 69%);
-  background-image: -o-linear-gradient(top, #d1d1d1 0%,#fefefe 69%);
-  background-image: linear-gradient(to bottom, #d1d1d1 0%,#fefefe 69%);
-  -webkit-box-shadow: 0 0 4px #000;
-  -moz-box-shadow: 0 0 4px #000;
-  -o-box-shadow: 0 0 4px #000;
-  -ms-box-shadow: 0 0 4px #000;
-  box-shadow: 0 0 4px #000;
+  background: #c8c8c8;
+  background-image: url(data:image/svg+xml,%3c%3fxml%20version%3d%221%2e0%22%3f%3e%3csvg%20xmlns%3d%22http%3a%2f%2fwww%2ew3%2eorg%2f2000%2fsvg%22%20width%3d%22100%25%22%20height%3d%22100%25%22%3e%3cdefs%3e%3clinearGradient%20id%3d%22G%22%20x2%3d%220%25%22%20y2%3d%22100%25%22%3e%3cstop%20style%3d%22stop%2dcolor%3a%23c8c8c8%22%20offset%3d%220%25%22%2f%3e%3cstop%20style%3d%22stop%2dcolor%3a%23e4e4e4%22%20offset%3d%22100%25%22%2f%3e%3c%2flinearGradient%3e%3c%2fdefs%3e%3crect%20width%3d%22100%25%22%20height%3d%22100%25%22%20fill%3d%22url%28%23G%29%22%2f%3e%3c%2fsvg%3e);
+  background-image: -ms-linear-gradient(top, #c8c8c8 0%,#e4e4e4 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c8c8c8),color-stop(100%, #e4e4e4));
+  background-image: -webkit-linear-gradient(top, #c8c8c8 0%,#e4e4e4 100%);
+  background-image: -moz-linear-gradient(top, #c8c8c8 0%,#e4e4e4 100%);
+  background-image: -o-linear-gradient(top, #c8c8c8 0%,#e4e4e4 100%);
+  background-image: linear-gradient(to bottom, #c8c8c8 0%,#e4e4e4 100%);
+  -webkit-box-shadow: 0 0 4px #000, 0 0 3px #fff inset;
+  -moz-box-shadow: 0 0 4px #000, 0 0 3px #fff inset;
+  -o-box-shadow: 0 0 4px #000, 0 0 3px #fff inset;
+  -ms-box-shadow: 0 0 4px #000, 0 0 3px #fff inset;
+  box-shadow: 0 0 4px #000, 0 0 3px #fff inset;
   z-index: 150;
 }
 .ui_check_switch .ui_check_switch_slider .ui_check_text {
@@ -144,19 +144,30 @@
   -ms-transition: ease 0.2s margin;
   transition: ease 0.2s margin;
 }
+.ui_check_switch_on .ui_check_switch_slider .ui_check_knob,
+.ui_check_switch_off .ui_check_switch_slider .ui_check_knob {
+  background: #d1d1d1;
+  background-image: url(data:image/svg+xml,%3c%3fxml%20version%3d%221%2e0%22%3f%3e%3csvg%20xmlns%3d%22http%3a%2f%2fwww%2ew3%2eorg%2f2000%2fsvg%22%20width%3d%22100%25%22%20height%3d%22100%25%22%3e%3cdefs%3e%3clinearGradient%20id%3d%22G%22%20x2%3d%220%25%22%20y2%3d%22100%25%22%3e%3cstop%20style%3d%22stop%2dcolor%3a%23d1d1d1%22%20offset%3d%220%25%22%2f%3e%3cstop%20style%3d%22stop%2dcolor%3a%23fefefe%22%20offset%3d%2269%25%22%2f%3e%3c%2flinearGradient%3e%3c%2fdefs%3e%3crect%20width%3d%22100%25%22%20height%3d%22100%25%22%20fill%3d%22url%28%23G%29%22%2f%3e%3c%2fsvg%3e);
+  background-image: -ms-linear-gradient(top, #d1d1d1 0%,#fefefe 69%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d1d1d1),color-stop(69%, #fefefe));
+  background-image: -webkit-linear-gradient(top, #d1d1d1 0%,#fefefe 69%);
+  background-image: -moz-linear-gradient(top, #d1d1d1 0%,#fefefe 69%);
+  background-image: -o-linear-gradient(top, #d1d1d1 0%,#fefefe 69%);
+  background-image: linear-gradient(to bottom, #d1d1d1 0%,#fefefe 69%);
+}
 
 .ui_check_switch_on .ui_check_switch_slider .ui_check_knob {
-  -webkit-box-shadow: -2px 0 4px rgba(0,0,0,0.5);
-  -moz-box-shadow: -2px 0 4px rgba(0,0,0,0.5);
-  -o-box-shadow: -2px 0 4px rgba(0,0,0,0.5);
-  -ms-box-shadow: -2px 0 4px rgba(0,0,0,0.5);
-  box-shadow: -2px 0 4px rgba(0,0,0,0.5);
+  -webkit-box-shadow: -1px 0 2px rgba(0,0,0,0.7), 0 0 3px #fff inset;
+  -moz-box-shadow: -1px 0 2px rgba(0,0,0,0.7), 0 0 3px #fff inset;
+  -o-box-shadow: -1px 0 2px rgba(0,0,0,0.7), 0 0 3px #fff inset;
+  -ms-box-shadow: -1px 0 2px rgba(0,0,0,0.7), 0 0 3px #fff inset;
+  box-shadow: -1px 0 2px rgba(0,0,0,0.7), 0 0 3px #fff inset;
 }
 
 .ui_check_switch_off .ui_check_switch_slider .ui_check_knob {
-  -webkit-box-shadow: 2px 0 4px rgba(0,0,0,0.5);
-  -moz-box-shadow: 2px 0 4px rgba(0,0,0,0.5);
-  -o-box-shadow: 2px 0 4px rgba(0,0,0,0.5);
-  -ms-box-shadow: 2px 0 4px rgba(0,0,0,0.5);
-  box-shadow: 2px 0 4px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 1px 0 2px rgba(0,0,0,0.7), 0 0 3px #fff inset;
+  -moz-box-shadow: 1px 0 2px rgba(0,0,0,0.7), 0 0 3px #fff inset;
+  -o-box-shadow: 1px 0 2px rgba(0,0,0,0.7), 0 0 3px #fff inset;
+  -ms-box-shadow: 1px 0 2px rgba(0,0,0,0.7), 0 0 3px #fff inset;
+  box-shadow: 1px 0 2px rgba(0,0,0,0.7), 0 0 3px #fff inset;
 }
