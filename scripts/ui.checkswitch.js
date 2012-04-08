@@ -9,11 +9,11 @@
  *
  * 2012-04:07 03:10
  */
-(function(window, document) {
+(function(window, document, undefined) {
   
   var
   // support
-  hasTouchEvents = ('ontouchstart' in window),
+  hasTouchEvents = 'ontouchstart' in window,
   hasAddEvent = 'addEventListener' in window,
 
   // TouchEvents
@@ -45,10 +45,7 @@
         throw Error('You can\'t use ' + self.namespace + ' for except input[type=checkbox]');
       }
 
-      self.conf = simpleExtend({
-        duration        : '0.2s',
-        timingFunction  : 'cubic-bezier(0,0,0.25,1)',
-        trigger         : 10,
+      self.conf = extendObj({
         checkOnText     : 'ON',
         checkOffText    : 'OFF',
         uiClass         : 'ui_check_switch',
@@ -66,8 +63,10 @@
       self.offClass = self.conf.uiClass + ' ' + self.conf.uiOffClass;
 
       self.elemDefDisplay = undefined;
+      // old IEs
       if ( self.elem.currentStyle ) {
         self.elemDefDisplay = self.elem.currentStyle['display'];
+      // others
       } else {
         self.elemDefDisplay = getComputedStyle(self.elem)['display'];
       }
@@ -97,17 +96,17 @@
         self.handledStart = handleEvent(
           self.view,
           TOUCHSTARTEV,
-          function(ev) { self._touchstart(ev); }
+          function(ev) { self._touchStart(ev); }
         );
         self.handledMove = handleEvent(
-          document,
+          document.body,
           TOUCHMOVEEV,
-          function(ev) { self._touchmove(ev); }
+          function(ev) { self._touchMove(ev); }
         );
         self.handledEnd = handleEvent(
-          document,
+          document.body,
           TOUCHENDEV,
-          function(ev) { self._touchend(ev); }
+          function(ev) { self._touchEnd(ev); }
         );
       }
     },
@@ -269,7 +268,10 @@
       self.slider = self.view.childNodes[0].childNodes[0];
       self.knob = self.slider.childNodes[1];
       // replace
-      insertAfter(self.view, self.elem);
+      self.elem.parentNode.insertBefore(
+        self.view,
+        self.elem.nextSibling
+      );
       styles(self.elem, {
         display: 'none'
       });
@@ -330,12 +332,16 @@
         conf = self.conf,
         onClass = conf.uiClass + ' ' + conf.uiOnClass;
 
-      self.setState(true);
+      self._setState(true);
       self.currentX = 0;
       self._setSliderPos(0);
       self.view.className = onClass;
 
-      trigger(self.view, 'checkSwitch:on');
+      trigger(self.view, 'checkSwitch:on', {
+        elem: self.elem,
+        id: self.elem.id,
+        name: self.elem.name
+      });
     },
 
     // check off
@@ -344,24 +350,28 @@
         conf = self.conf,
         offClass = conf.uiClass + ' ' + conf.uiOffClass;
 
-      self.setState(false);
+      self._setState(false);
       self.currentX = -self.range;
       self._setSliderPos(-self.range);
       self.view.className = offClass;
 
-      trigger(self.view, 'checkSwitch:off');
+      trigger(self.view, 'checkSwitch:off', {
+        elem: self.elem,
+        id: self.elem.id,
+        name: self.elem.name
+      });
+    },
+
+    // set checkbox state
+    _setState: function(state) {
+      var self = this;
+      self.elem.checked = state ? 'checked' : '';
     },
 
     // get checkbox state
     getState: function() {
       var self = this;
       return self.elem.checked ? true : false;
-    },
-
-    // set checkbox state
-    setState: function(state) {
-      var self = this;
-      self.elem.checked = state ? 'checked' : '';
     },
 
     on: function() {
@@ -413,16 +423,18 @@
     }
   }
 
-  function trigger(elm, listener) {
+  function trigger(elm, listener, obj) {
     var evtObj;
     if ( 'createEvent' in document ) {
       evtObj = document.createEvent('UIEvents');
       evtObj.initEvent(listener, false, true);
+      evtObj.checkSwitch = obj;
       elm.dispatchEvent(evtObj);
     } else
     if ( 'createEventObject' in document ) {
       evtObj = document.createEventObject();
       evtObj.name = listener;
+      evtObj.checkSwitch = obj;
       elm.fireEvent('ondataavailable', evtObj);
     }
   }
@@ -437,7 +449,7 @@
           evtObj.func[listener] = func;
 
           if ( !evtObj.func[evtObj.name] ) return;
-          evtObj.func[evtObj.name]();
+          evtObj.func[evtObj.name](evtObj);
           evtObj.name = null;
         });
       } else {
@@ -475,17 +487,13 @@
     }
   }
 
-  function simpleExtend(base, obj) {
+  function extendObj(base, obj) {
     var c = undefined;
     for ( c in obj ) {
       if ( !(c in base) ) break;
       base[c] = obj[c];
     }
     return base;
-  }
-
-  function insertAfter(node, referenceNode) {
-    referenceNode.parentNode.insertBefore(node, referenceNode.nextSibling);
   }
 
   function extendMethod(base, obj) {

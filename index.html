@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 	<meta charset="utf-8">
-	<title>CheckSwitch</title>
+	<title>ui.checkSwitch</title>
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="styles/style.css">
 	<link rel="stylesheet" href="styles/ui.checkswitch.css">
@@ -20,11 +20,15 @@
 <body>
 
 	<header>
-		<h1>CheckSwitch</h1>
+		<h1>ui.checkSwitch</h1>
 	</header>
 	<div class="contents">
 		<section>
-			<h2>Demo</h2>
+			<h2>What's this?</h2>
+			<p>"ui.checkSwitch" is a JavaScript library and you can implement iOS style switching checkbox by using this.</p>
+		</section>
+		<section>
+			<h2>iOS style switching checkbox</h2>
 			<fieldset>
 				<div>
 					<label>Basic</label>
@@ -40,10 +44,132 @@
 				</div>
 			</fieldset>
 		</section>
+		<section>
+			<h2>Download</h2>
+			<ul>
+				<li class="icon_download"><a href="https://github.com/5509/ui.checkSwitch/zipball/master">Download ui.checkSwitch.js</a></li>
+			</ul>
+		</section>
+		<section>
+			<h2>Implementation</h2>
+			<p>Here is a checkbox, and this is to be base.</p>
+			<pre>&lt;input type="checkbox" id="basic" name="basic" value="1"&gt;</pre>
+			<p>Then, reading "ui.checkswitch.js" and run ChechSwitch func.</p>
+			<pre class="html">&lt;script src="scripts/ui.checkswitch.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+CheckSwitch('#checkbox');
+// a 1st argument is set a target checkbox id
+&lt;/script&gt;</pre>
+			<p>A checkbox targeted is replaced by HTML following. Text labels and classes are custmizable by using options.</p>
+			<pre class="html">&lt;span class="ui_check_switch"&gt;
+  &lt;span class="ui_check_switch_inner"&gt;
+    &lt;span class="ui_check_switch_slider"&gt;
+      &lt;span class="ui_check_on ui_check_text"&gt;ON&lt;/span&gt;
+      &lt;span class="ui_check_knob"&gt;&lt;/span&gt;
+      &lt;span class="ui_check_off ui_check_text"&gt;OFF&lt;/span&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+&lt;/span&gt;</pre>
+
+		</section>
+		<section>
+			<h2>Options</h2>
+			<p>Custom text label and classes</p>
+			<table>
+				<thead>
+					<tr><th>key</th><td>default</td></tr>
+				</thead>
+				<tbody>
+					<tr><th>checkOnText</th><td>'ON'</td></tr>
+					<tr><th>checkOffText</th><td>'OFF'</td></tr>
+					<tr><th>uiClass</th><td>'ui_check_switch'</td></tr>
+					<tr><th>uiOnClass</th><td>'ui_check_switch_on'</td></tr>
+					<tr><th>uiOffClass</th><td>'ui_check_switch_off'</td></tr>
+					<tr><th>uiInnerClass</th><td>'ui_check_switch_inner'</td></tr>
+					<tr><th>uiSliderClass</th><td>'ui_check_switch_slider'</td></tr>
+					<tr><th>uiTextClass</th><td>'ui_check_text'</td></tr>
+					<tr><th>uiKnobClass</th><td>'ui_check_knob'</td></tr>
+					<tr><th>uiCheckOffClass</th><td>'ui_check_off'</td></tr>
+					<tr><th>uiCheckOnClass </th><td>'ui_check_on</td></tr>
+				</tbody>
+			</table>
+			<h3>source code</h3>
+			<pre class="javascript">CheckSwitch('#checkbox', {
+  checkOnText: 'ON',
+  checkOffText: 'OFF'
+});</pre>
+		</section>
+		<section>
+			<h2>APIs</h2>
+			<table>
+				<thead>
+					<tr><th>method</th><td>description</td></tr>
+				</thead>
+				<tbody>
+					<tr><th>on</th><td>make the checkSwitch on</td></tr>
+					<tr><th>off</th><td>make the checkSwitch off</td></tr>
+					<tr><th>getState</th><td>get the checkSwitch state</td></tr>
+					<tr><th>bind</th><td>bind events to the checkSwitch</td></tr>
+					<tr><th>destroy</th><td>destroy all events and APIs from the checkSwitch</td></tr>
+				</tbody>
+			</table>
+			<h3>source code</h3>
+			<pre class="javascript">var chk = CheckSwitch('#checkbox');
+chk.on();</pre>
+		</section>
+		<section>
+			<h2>Events</h2>
+			<table>
+				<thead>
+					<tr><th>events</th><td>description</td></tr>
+				</thead>
+				<tbody>
+					<tr><th>checkSwitch:on</th><td>Fire when the checkSwitch is on</td></tr>
+					<tr><th>checkSwitch:off</th><td>Fire when the checkSwitch is off</td></tr>
+				</tbody>
+			</table>
+			<h3>source code</h3>
+			<pre class="javascript">var chk = CheckSwitch('#checkbox');
+chk.bind({
+  'checkSwitch:on': function(ev) {
+    var cs = ev.checkSwitch;
+    console.log(cs.name);
+  },
+  'checkSwitch:off': function(ev) {
+    var cs = ev.checkSwitch;
+    console.log(cs.name);
+  }
+});</pre>
+		</section>
+		<section>
+			<h2>Capable browsers</h2>
+			<ul>
+				<li class="icon_capable">Mobile Safari (iOS 3+)</li>
+				<li class="icon_capable">Android 2.2+ (*1)</li>
+				<li class="icon_capable">IE 6+ (*2)</li>
+				<li class="icon_capable">and modern browsers</li>
+			</ul>
+			<div class="note">
+				<p>*1) There are ugly border radiuses in default styles.</p>
+				<p>*2) If you want to use in IEs, you would write new styles.</p>
+			</div>
+		</section>
+		<section>
+			<h2>About</h2>
+			<ul>
+				<li class="icon_license">Licensed under the MIT</li>
+				<li class="icon_author">Kazunori Tokuda, <a href="http://5509.me">5509</a></li>
+				<li class="icon_repository">Repository on <a href="https://github.com/5509/ui.checkSwitch">github</a></li>
+				<li class="icon_like">
+					<g:plusone size="medium"></g:plusone><script>(function(){var po=document.createElement("script");po.type="text/javascript";po.async=true;po.src="https://apis.google.com/js/plusone.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(po,s);})();</script>
+					<iframe src="http://www.facebook.com/plugins/like.php?href=&amp;layout=button_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:20px;" allowTransparency="true"></iframe>
+				</li>
+			</ul>
+		</section>
 	</div>
+
 	<footer>
-		<p>Author: Kazunori Tokuda (<a href="http://5509.me">5509</a><br>
-		Fork me on <a href="https://github.com/5509/ui.checkSwitch">github</a>.</p>
+		<p>Some icons by <a href="http://blog.twg.ca/">The Working Group</a></p>
 	</footer>
 
 <script src="scripts/ui.checkswitch.js"></script>
@@ -55,11 +181,19 @@
 (function() {
 	var chk = CheckSwitch('#events');
 	chk.bind({
-		'checkSwitch:on': function() {
-			console.log(chk.getState());
+		'checkSwitch:on': function(ev) {
+			console.log(
+				'state:', chk.getState(),
+				'\nid:', ev.checkSwitch.id,
+				'\nname:', ev.checkSwitch.name
+			);
 		},
-		'checkSwitch:off': function() {
-			console.log(chk.getState());
+		'checkSwitch:off': function(ev) {
+			console.log(
+				'state:', chk.getState(),
+				'\nid:', ev.checkSwitch.id,
+				'\nname:', ev.checkSwitch.name
+			);
 		}
 	});
 }());
@@ -69,6 +203,16 @@
 		checkOnText: 'オン',
 		checkOffText: 'オフ'
 	});
+}());
+</script>
+
+<script src="scripts/lib/highlight.min.js"></script>
+<script>
+(function() {
+	var pre = document.getElementsByTagName('pre');
+	for ( var i = 0, l = pre.length; i < l; i++ ) {
+		hljs.highlightBlock(pre[i]);
+	}
 }());
 </script>
 
