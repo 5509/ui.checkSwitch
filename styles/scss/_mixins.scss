@@ -118,12 +118,12 @@ $use_ms:     nth($use, 8);
     $angle_svg: '%20x2%3d%22100%25%22';
   }
   @if $angle == 'to top' {
-    $angle_old: 'bottom,';
+    $angle_old: 'bottom';
     $angle_webkit: 'left bottom, left top';
     $angle_svg: '%20x2%3d%220%22%20y1%3d%22100%25%22';
   }
   @if $angle == 'to right' {
-    $angle_old: 'left,';
+    $angle_old: 'left';
     $angle_webkit: 'left top, right top';
     $angle_svg: '';
   }
